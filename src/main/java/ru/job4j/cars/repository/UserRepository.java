@@ -1,23 +1,21 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
+@Repository
 @AllArgsConstructor
 public class UserRepository {
     private final CrudRepository crudRepository;
 
     /**
      * Сохранить в базе.
+     *
      * @param user пользователь.
      * @return пользователь с id.
      */
@@ -28,6 +26,7 @@ public class UserRepository {
 
     /**
      * Обновить в базе пользователя.
+     *
      * @param user пользователь.
      */
     public void update(User user) {
@@ -36,6 +35,7 @@ public class UserRepository {
 
     /**
      * Удалить пользователя по id.
+     *
      * @param userId ID
      */
     public void delete(int userId) {
@@ -47,6 +47,7 @@ public class UserRepository {
 
     /**
      * Список пользователь отсортированных по id.
+     *
      * @return список пользователей.
      */
     public List<User> findAllOrderById() {
@@ -55,6 +56,7 @@ public class UserRepository {
 
     /**
      * Найти пользователя по ID
+     *
      * @return пользователь.
      */
     public Optional<User> findById(int userId) {
@@ -66,6 +68,7 @@ public class UserRepository {
 
     /**
      * Список пользователей по login LIKE %key%
+     *
      * @param key key
      * @return список пользователей.
      */
@@ -78,6 +81,7 @@ public class UserRepository {
 
     /**
      * Найти пользователя по login.
+     *
      * @param login login.
      * @return Optional or user.
      */
