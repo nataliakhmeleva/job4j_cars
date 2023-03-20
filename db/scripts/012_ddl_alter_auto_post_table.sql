@@ -1,0 +1,1 @@
+alter table auto_post add column file_id int not null references car(id);
