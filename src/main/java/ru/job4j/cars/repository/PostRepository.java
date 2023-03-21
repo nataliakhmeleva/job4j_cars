@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Post;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,10 @@ public class PostRepository {
 
 
     public List<Post> findByLastDay() {
-        return crudRepository.query("FROM Post WHERE created >= CURRENT_DATE - INTERVAL '1 day'", Post.class);
+        var today = LocalDateTime.now();
+        var yesterday = today.minusDays(1);
+        return crudRepository.query("FROM Post WHERE created between :fYesterday and :fToday", Post.class,
+                Map.of("fYesterday", yesterday, "fToday", today));
     }
 
     public List<Post> findByPhoto() {
